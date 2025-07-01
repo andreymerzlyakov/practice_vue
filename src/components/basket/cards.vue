@@ -12,42 +12,35 @@ export default {
     countryNum: {
       type: String
     },
-    tours: {
-      type: Array,
-      required: true
-    },
     basketlist:{
       type: Array
     }
   },
   data() {
     return {
-
-    }
-  },
-  methods: {
-    basketElem(qwe) {
-      this.$emit('basketElem', qwe)
+      tours: [],
     }
   },
   computed: {
     filterCountry() {
+      let filtered = []
       let q = []
-      let eew = this.tours
-      if (this.$route.path == '/Basket') {
-        eew = this.basketlist
-      }
       switch(this.countryNum) {
-        case "1": q = eew.filter(function (elem) {if (elem.Country == 'Россия') return elem}); break;
-        case "2": q = eew.filter(function (elem) {if (elem.Country == 'Франция') return elem}); break;
-        case "3": q = eew.filter(function (elem) {if (elem.Country == 'Тайланд') return elem}); break;
-        default: q = eew; break;
+        case "1": q = this.tours.filter(function (elem) {if (elem.Country == 'Россия') return filtered = elem}); break;
+        case "2": q = this.tours.filter(function (elem) {if (elem.Country == 'Франция') return filtered = elem}); break;
+        case "3": q = this.tours.filter(function (elem) {if (elem.Country == 'Тайланд') return filtered = elem}); break;
+        default: q = this.tours; break;
       }
       let t = this.townName;
       return q.filter(function (elem) {
         if(t==='') return true;
         return elem.town.indexOf(t) !== -1;
       })
+    }
+  },
+  methods: {
+    basketElem(elem) {
+
     }
   }
 }

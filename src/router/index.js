@@ -15,6 +15,8 @@ const router = createRouter({
       path: '/basket',
       name: 'productbasket',
       component: productbasket,
+      props: true,
+      emit: true
     },
   ],
 })

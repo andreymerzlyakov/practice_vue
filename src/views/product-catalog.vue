@@ -8,17 +8,30 @@ export default {
   },
   data() {
     return {
-      countryNum: "0"
+      basketlist: [],
+      countryNum: "0",
+      tours: [
+        {Country:'Россия', town: 'Сочи', price: '200 000 руб'},
+        {Country:'Россия', town: 'Сочи', price: '200 000 руб'},
+        {Country:'Россия', town: 'Сочи', price: '200 000 руб'},
+        {Country:'Россия', town: 'Сочи', price: '200 000 руб'},
+        {Country:'Россия', town: 'Сочи', price: '200 000 руб'},
+        {Country:'Франция', town: 'Париж', price: '300 000 руб'},
+        {Country:'Франция', town: 'Париж', price: '300 000 руб'},
+        {Country:'Франция', town: 'Париж', price: '300 000 руб'},
+        {Country:'Франция', town: 'Париж', price: '300 000 руб'},
+        {Country:'Франция', town: 'Париж', price: '300 000 руб'},
+        {Country:'Франция', town: 'Париж', price: '300 000 руб'},
+        {Country:'Тайланд', town: 'Бангкок', price: '100 000 руб'},
+      ],
     }
   },
   methods: {
+    basketElem(elem) {
+      this.basketlist.push(elem)
+    },
     countrycheck(data) {
       this.countryNum = data
-    }
-  },
-  props: {
-    basketlist:{
-      type: Array
     }
   }
 }
@@ -27,8 +40,8 @@ export default {
 <template>
   <div class="catalog">
     <div class="row">
-      <Filter @countrycheck="countrycheck"/>
-      <Area :countryNum="countryNum" :basketlist="basketlist"/>
+      <Filter :tours="tours" @countrycheck="countrycheck"/>
+      <Area @basketElem="basketElem" :tours="tours" :countryNum="countryNum" :basketlist="basketlist"/>
     </div>
   </div>
 </template>

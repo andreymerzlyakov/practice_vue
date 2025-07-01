@@ -22,6 +22,14 @@ export default {
     },
     basketlist:{
       type: Array
+    },
+    tours: {
+      required: true
+    }
+  },
+  methods: {
+    basketElem(qwe) {
+      this.$emit('basketElem', qwe)
     }
   }
 }
@@ -32,7 +40,7 @@ export default {
   <div class="col-xl-9 col-lg-8 col-md-7 p-3">
     <inp @event="townFilter" />
     <div class="products-area">
-      <Card :townName="townName" :countryNum="countryNum" :basketlist="basketlist"/>
+      <Card @basketElem="basketElem" :tours="tours" :townName="townName" :countryNum="countryNum" :basketlist="basketlist"/>
     </div>
   </div>
 </template>

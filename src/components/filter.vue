@@ -1,8 +1,39 @@
 <script>
 export default {
+  data() {
+    return {
+      Allcount: 0,
+      Ruscount: 0,
+      Francount: 0,
+      Thcount: 0
+    }
+  },
   methods: {
     checkCountry(event) {
       this.$emit('countrycheck', event.target.value);
+    }
+  },
+  props: {
+    tours: {
+      type: Array,
+      required: true
+    }
+  },
+  mounted() {
+    this.Allcount = this.tours.length
+    for (let i in this.tours) {
+
+      switch (this.tours[i].Country) {
+        case 'Россия':
+          this.Ruscount += 1
+          break
+        case 'Франция':
+          this.Francount += 1
+          break
+        default:
+          this.Thcount += 1
+          break
+      }
     }
   }
 }
@@ -23,7 +54,7 @@ export default {
                 value="0"
                 checked
               />
-              <label class="form-check-label" for="country-0"> Все (21) </label>
+              <label class="form-check-label" for="country-0"> Все ({{ Allcount }}) </label>
             </div>
             <div class="form-check">
               <input
@@ -34,7 +65,7 @@ export default {
                 id="country-1"
                 value="1"
               />
-              <label class="form-check-label" for="country-1"> Россия (10) </label>
+              <label class="form-check-label" for="country-1"> Россия ({{ Ruscount }}) </label>
             </div>
             <div class="form-check">
               <input
@@ -45,7 +76,7 @@ export default {
                 id="country-2"
                 value="2"
               />
-              <label class="form-check-label" for="country-2"> Франция (5) </label>
+              <label class="form-check-label" for="country-2"> Франция ({{ Francount }}) </label>
             </div>
             <div class="form-check">
               <input
@@ -56,7 +87,7 @@ export default {
                 id="country-3"
                 value="3"
               />
-              <label class="form-check-label" for="country-3"> Тайланд (6) </label>
+              <label class="form-check-label" for="country-3"> Тайланд ({{ Thcount }}) </label>
             </div>
           </div>
         </div>
